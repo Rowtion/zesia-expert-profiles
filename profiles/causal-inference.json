@@ -1,0 +1,131 @@
+{
+  "format": "zesia.expert-profile.v1",
+  "id": "causal-inference",
+  "version": "0.1.2",
+  "domain": "data",
+  "title": "因果推断",
+  "scope": "Intervention effects, observational identification, confounding, temporal ordering and quasi-experimental assumptions.",
+  "routingDescription": "Intervention effects, observational identification, confounding, temporal ordering and quasi-experimental assumptions.",
+  "useWhen": [
+    "Explain whether an intervention caused a change",
+    "Compare rollout groups with non-random timing"
+  ],
+  "distinguishFrom": [
+    {
+      "expertId": "statistical-inference",
+      "criterion": "Use statistical inference for estimation without an intervention claim."
+    },
+    {
+      "expertId": "experiment-design",
+      "criterion": "Use experiment design for a future controlled trial."
+    }
+  ],
+  "diagnosticChecklist": [
+    {
+      "id": "causal-target",
+      "when": "Before discussing an effect",
+      "check": "Specify intervention, outcome, population, counterfactual comparison and time horizon.",
+      "decisionImpact": "Keep the causal estimand separate from an observed association.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "identification",
+      "when": "When using observational data",
+      "check": "State the causal ordering and identification assumptions; check confounders, mediators and colliders.",
+      "decisionImpact": "Do not turn regression adjustment into proof of causality.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "overlap",
+      "when": "When groups differ at baseline",
+      "check": "Check selection, comparability and treatment overlap before choosing an estimator.",
+      "decisionImpact": "Limit the target population or acknowledge non-identification when support is absent.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "panel-rollout",
+      "when": "When adoption is staggered or outcomes trend over time",
+      "check": "Check treatment timing, pre-trends, anticipation, concurrent changes and heterogeneous effects.",
+      "decisionImpact": "Qualify difference-in-differences or fixed-effects recommendations with their assumptions.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "sensitivity",
+      "when": "When key assumptions cannot be observed",
+      "check": "Name a discriminating test, negative control, sensitivity analysis or design change.",
+      "decisionImpact": "Report bounded conclusions and what evidence would change them.",
+      "sourceRefs": [
+        "primary"
+      ]
+    }
+  ],
+  "evidenceRequirements": [
+    "Treatment/outcome timing and group composition",
+    "Pre-intervention trends and concurrent interventions",
+    "Selection mechanism and relevant potential confounders"
+  ],
+  "qualityChecks": [
+    "Separate association, identification and estimation",
+    "State untestable assumptions explicitly",
+    "No causal uplift from a before/after difference alone",
+    "A passing pre-trend test does not prove parallel trends or eliminate unmeasured confounding"
+  ],
+  "riskRules": [
+    "Policy, health and financial intervention recommendations require domain review of consequential assumptions"
+  ],
+  "knowledgePolicy": {
+    "status": "not_connected",
+    "preferredSources": [
+      "Original identification and estimation references for the selected causal design",
+      "Domain evidence for treatment assignment, temporal ordering and plausible confounding"
+    ],
+    "refreshTriggers": [
+      "Design-specific methodological guidance and applicable domain rules"
+    ],
+    "onMissing": "Bound the conclusion and state which current source or evidence is needed."
+  },
+  "examples": [
+    {
+      "input": "Sites adopt a feature in different weeks while also running region-specific promotions.",
+      "expected": "Examine timing, confounding, comparability and pre-trends before attributing uplift.",
+      "reject": "Claim causal impact from pooled treated-versus-control means."
+    }
+  ],
+  "sources": [
+    {
+      "ref": "primary",
+      "sourceId": "scientific-agents/scientific-agents/causal-inference-scientist/AGENTS.md",
+      "repository": "K-Dense-AI/scientific-agents",
+      "commit": "98c7fae46648724e1a43a1f2b207b0c82fcc462e",
+      "path": "scientific-agents/causal-inference-scientist/AGENTS.md",
+      "sha256": "fb08463704e609d3f86b3f62729df998664f15d593b1ed24117ee73e21dc0a30",
+      "license": "MIT",
+      "url": "https://github.com/K-Dense-AI/scientific-agents/blob/98c7fae46648724e1a43a1f2b207b0c82fcc462e/scientific-agents/causal-inference-scientist/AGENTS.md",
+      "sections": [
+        "Mindset And First Principles",
+        "How You Frame A Problem",
+        "How You Work"
+      ]
+    }
+  ],
+  "adaptations": [
+    "Converted task execution instructions into conditional consultation checks.",
+    "Removed persona, memory claims, model selection and tool grants.",
+    "Replaced unconditional numerical targets with context-specific evidence requirements.",
+    "Tightened evidence and recommendation boundaries after the first synthetic live case review; broad professional validation remains pending."
+  ],
+  "review": {
+    "status": "engineering_curated",
+    "curatedAt": "2026-11-04",
+    "owner": "Zesia",
+    "professionalValidation": "pending_case_evaluation"
+  }
+}

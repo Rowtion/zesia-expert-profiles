@@ -1,0 +1,125 @@
+{
+  "format": "zesia.expert-profile.v1",
+  "id": "experiment-design",
+  "version": "0.1.1",
+  "domain": "data",
+  "title": "实验设计与判读",
+  "scope": "Product experiments, randomization, primary outcomes, guardrails, power, stopping and rollout decisions.",
+  "routingDescription": "Product experiments, randomization, primary outcomes, guardrails, power, stopping and rollout decisions.",
+  "useWhen": [
+    "Plan or interpret an A/B test",
+    "Repeated peeking, assignment or measurement may invalidate a test"
+  ],
+  "distinguishFrom": [
+    {
+      "expertId": "causal-inference",
+      "criterion": "Use causal inference for existing non-randomized interventions."
+    }
+  ],
+  "diagnosticChecklist": [
+    {
+      "id": "hypothesis",
+      "when": "Before a trial",
+      "check": "Define intervention, mechanism, target population and the decision the test will inform.",
+      "decisionImpact": "Choose an interpretable contrast and a testable hypothesis.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "assignment",
+      "when": "When exposure or analysis units differ",
+      "check": "Check randomization unit, contamination, clustering, sample-ratio mismatch and instrumentation drift.",
+      "decisionImpact": "Resolve assignment and measurement failures before interpreting treatment effects.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "metrics",
+      "when": "Before declaring a winner",
+      "check": "Separate a prespecified primary metric, guardrails and diagnostic secondary metrics.",
+      "decisionImpact": "Apply the decision rule to the correct outcome family and protect guardrails.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "power-stopping",
+      "when": "When sizing or monitoring a test",
+      "check": "State baseline, minimum detectable effect in explicit units, power, error budget and stopping plan.",
+      "decisionImpact": "Use an appropriate fixed-horizon or sequential method rather than repeated ordinary significance checks.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "interpretation",
+      "when": "When reviewing results",
+      "check": "Compare uncertainty and practical effect against the planned decision and guardrails.",
+      "decisionImpact": "Distinguish inconclusive evidence from equivalence and specify the next decision.",
+      "sourceRefs": [
+        "primary"
+      ]
+    }
+  ],
+  "evidenceRequirements": [
+    "Randomization and exposure/analysis units",
+    "Primary and guardrail definitions plus instrumentation checks",
+    "Baseline, MDE definition, sample size, duration and stopping plan"
+  ],
+  "qualityChecks": [
+    "No winner from uncontrolled peeking",
+    "Check sample-ratio mismatch and guardrail outcomes",
+    "Absolute and relative MDE are not interchangeable"
+  ],
+  "riskRules": [
+    "Consequential product or health interventions need domain-specific review beyond a generic A/B checklist"
+  ],
+  "knowledgePolicy": {
+    "status": "not_connected",
+    "preferredSources": [
+      "Documented randomization and measurement behavior of the actual experiment platform",
+      "Original references for the selected fixed-horizon or sequential procedure"
+    ],
+    "refreshTriggers": [
+      "Statistical procedure and platform-specific experiment constraints"
+    ],
+    "onMissing": "Bound the conclusion and state which current source or evidence is needed."
+  },
+  "examples": [
+    {
+      "input": "A test was stopped after the first significant day and revenue guardrails fell.",
+      "expected": "Inspect stopping bias and guardrails before a rollout recommendation.",
+      "reject": "Declare victory from the favorable primary p-value alone."
+    }
+  ],
+  "sources": [
+    {
+      "ref": "primary",
+      "sourceId": "claude-skills/product-team/skills/experiment-designer/SKILL.md",
+      "repository": "alirezarezvani/claude-skills",
+      "commit": "c85b17e1fb621ba760478baaacc4fcb9be225e74",
+      "path": "product-team/skills/experiment-designer/SKILL.md",
+      "sha256": "d475583a646953e1e57b71711f8beea8845fc62d1fa6afc0538c89d9df957b31",
+      "license": "MIT",
+      "url": "https://github.com/alirezarezvani/claude-skills/blob/c85b17e1fb621ba760478baaacc4fcb9be225e74/product-team/skills/experiment-designer/SKILL.md",
+      "sections": [
+        "Core Workflow",
+        "Common Experiment Pitfalls",
+        "Statistical Interpretation Guardrails"
+      ]
+    }
+  ],
+  "adaptations": [
+    "Converted task execution instructions into conditional consultation checks.",
+    "Removed persona, memory claims, model selection and tool grants.",
+    "Replaced unconditional numerical targets with context-specific evidence requirements."
+  ],
+  "review": {
+    "status": "engineering_curated",
+    "curatedAt": "2026-11-04",
+    "owner": "Zesia",
+    "professionalValidation": "pending_case_evaluation"
+  }
+}

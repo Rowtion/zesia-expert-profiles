@@ -1,0 +1,246 @@
+{
+  "format": "zesia.expert-catalog.v1",
+  "profiles": [
+    {
+      "id": "backend-architecture",
+      "version": "0.1.1",
+      "domain": "software",
+      "title": "后端架构",
+      "path": "profiles/backend-architecture.json",
+      "routingDescription": "API contracts, state ownership, consistency, concurrency and safe data migrations.",
+      "useWhen": [
+        "Choosing service boundaries",
+        "Concurrent writes or retries can corrupt business state"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "runtime-debugging",
+          "criterion": "Use debugging when the immediate need is to explain a concrete failing run."
+        },
+        {
+          "expertId": "service-reliability",
+          "criterion": "Use reliability for incidents, SLOs and operational recovery."
+        }
+      ]
+    },
+    {
+      "id": "bioinformatics",
+      "version": "0.1.2",
+      "domain": "science",
+      "title": "生物信息分析设计",
+      "path": "profiles/bioinformatics.json",
+      "routingDescription": "Omics analysis planning, biological replication, reference compatibility, batch confounding and reproducibility.",
+      "useWhen": [
+        "Review RNA-seq or other omics analysis plans",
+        "Interpret findings affected by sample or reference design"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "statistical-inference",
+          "criterion": "Use statistical inference for non-domain-specific estimands and uncertainty."
+        }
+      ]
+    },
+    {
+      "id": "causal-inference",
+      "version": "0.1.2",
+      "domain": "data",
+      "title": "因果推断",
+      "path": "profiles/causal-inference.json",
+      "routingDescription": "Intervention effects, observational identification, confounding, temporal ordering and quasi-experimental assumptions.",
+      "useWhen": [
+        "Explain whether an intervention caused a change",
+        "Compare rollout groups with non-random timing"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "statistical-inference",
+          "criterion": "Use statistical inference for estimation without an intervention claim."
+        },
+        {
+          "expertId": "experiment-design",
+          "criterion": "Use experiment design for a future controlled trial."
+        }
+      ]
+    },
+    {
+      "id": "data-pipeline",
+      "version": "0.1.1",
+      "domain": "data",
+      "title": "数据管道与质量",
+      "path": "profiles/data-pipeline.json",
+      "routingDescription": "Data contracts, row grain, schema evolution, incremental ingestion, replay and reconciliation.",
+      "useWhen": [
+        "Missing or duplicated records after ingestion",
+        "Metrics changed after schema or pipeline changes"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "statistical-inference",
+          "criterion": "Use statistical inference once the underlying data and sampling unit are trustworthy."
+        }
+      ]
+    },
+    {
+      "id": "experiment-design",
+      "version": "0.1.1",
+      "domain": "data",
+      "title": "实验设计与判读",
+      "path": "profiles/experiment-design.json",
+      "routingDescription": "Product experiments, randomization, primary outcomes, guardrails, power, stopping and rollout decisions.",
+      "useWhen": [
+        "Plan or interpret an A/B test",
+        "Repeated peeking, assignment or measurement may invalidate a test"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "causal-inference",
+          "criterion": "Use causal inference for existing non-randomized interventions."
+        }
+      ]
+    },
+    {
+      "id": "financial-analysis",
+      "version": "0.1.1",
+      "domain": "business",
+      "title": "经营财务分析",
+      "path": "profiles/financial-analysis.json",
+      "routingDescription": "Business financial statements, budget variance, cash-flow scenarios and assumption-sensitive valuation reviews.",
+      "useWhen": [
+        "Explain a budget variance or cash-runway discrepancy",
+        "Review a business forecast or valuation assumptions"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "causal-inference",
+          "criterion": "Use causal inference when attributing financial change to a specific intervention."
+        }
+      ]
+    },
+    {
+      "id": "general",
+      "version": "0.1.0",
+      "domain": "general",
+      "title": "通用决策顾问",
+      "path": "profiles/general.json",
+      "routingDescription": "General decisions and requests that cannot yet be matched to a specialist.",
+      "useWhen": [
+        "No specialist scope fits",
+        "The decision is too ambiguous to select a specialist"
+      ],
+      "distinguishFrom": []
+    },
+    {
+      "id": "product-requirements",
+      "version": "0.1.1",
+      "domain": "product",
+      "title": "产品需求与验收",
+      "path": "profiles/product-requirements.json",
+      "routingDescription": "Clarify an incomplete request, distinguish desired outcomes from proposed features, and define bounded acceptance.",
+      "useWhen": [
+        "User asks for a feature but the goal is unclear",
+        "Scope expands without an observable success condition"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "user-research",
+          "criterion": "Use user research to choose evidence-gathering methods or evaluate interview support."
+        }
+      ]
+    },
+    {
+      "id": "runtime-debugging",
+      "version": "0.1.1",
+      "domain": "software",
+      "title": "运行故障诊断",
+      "path": "profiles/runtime-debugging.json",
+      "routingDescription": "Concrete failures, stack traces, conflicting hypotheses, minimal reproductions and evidence-driven debugging.",
+      "useWhen": [
+        "A command or service fails",
+        "Repeated fixes have not explained a reproducible symptom"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "backend-architecture",
+          "criterion": "Use architecture for changing ownership or invariants across components."
+        }
+      ]
+    },
+    {
+      "id": "security-review",
+      "version": "0.1.1",
+      "domain": "software",
+      "title": "安全设计审查",
+      "path": "profiles/security-review.json",
+      "routingDescription": "Threat models, trust boundaries, authorization, secret handling and evidence-based security review.",
+      "useWhen": [
+        "Review an API permission boundary",
+        "Assess an exposed secret or claimed vulnerability"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "backend-architecture",
+          "criterion": "Use architecture when state or data evolution is the dominant decision."
+        }
+      ]
+    },
+    {
+      "id": "service-reliability",
+      "version": "0.1.2",
+      "domain": "software",
+      "title": "服务可靠性",
+      "path": "profiles/service-reliability.json",
+      "routingDescription": "Service incidents, SLI/SLO design, error budgets, recovery, backpressure and bounded retries.",
+      "useWhen": [
+        "Availability or latency incidents",
+        "Retry storms, overload or unsafe recovery"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "runtime-debugging",
+          "criterion": "Use debugging for a localized failure with no service-level operational decision."
+        }
+      ]
+    },
+    {
+      "id": "statistical-inference",
+      "version": "0.1.1",
+      "domain": "data",
+      "title": "统计推断",
+      "path": "profiles/statistical-inference.json",
+      "routingDescription": "Estimands, sampling units, dependence, uncertainty, missingness and multiplicity in statistical conclusions.",
+      "useWhen": [
+        "Choose or interpret a statistical analysis",
+        "A significance claim may hide dependence or selective analysis"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "causal-inference",
+          "criterion": "Use causal inference for claims about intervention effects."
+        },
+        {
+          "expertId": "experiment-design",
+          "criterion": "Use experiment design for randomization and stopping plans."
+        }
+      ]
+    },
+    {
+      "id": "user-research",
+      "version": "0.1.1",
+      "domain": "product",
+      "title": "用户研究与证据综合",
+      "path": "profiles/user-research.json",
+      "routingDescription": "Choose research methods, evaluate participant independence, and distinguish observations from supported insights.",
+      "useWhen": [
+        "Synthesize interviews or usability findings",
+        "Choose a study method and honest sample rationale"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "product-requirements",
+          "criterion": "Use product requirements for delivery scope once sufficient evidence exists."
+        }
+      ]
+    }
+  ]
+}

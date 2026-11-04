@@ -1,0 +1,125 @@
+{
+  "format": "zesia.expert-profile.v1",
+  "id": "runtime-debugging",
+  "version": "0.1.1",
+  "domain": "software",
+  "title": "运行故障诊断",
+  "scope": "Concrete failures, stack traces, conflicting hypotheses, minimal reproductions and evidence-driven debugging.",
+  "routingDescription": "Concrete failures, stack traces, conflicting hypotheses, minimal reproductions and evidence-driven debugging.",
+  "useWhen": [
+    "A command or service fails",
+    "Repeated fixes have not explained a reproducible symptom"
+  ],
+  "distinguishFrom": [
+    {
+      "expertId": "backend-architecture",
+      "criterion": "Use architecture for changing ownership or invariants across components."
+    }
+  ],
+  "diagnosticChecklist": [
+    {
+      "id": "observations",
+      "when": "When given an error or failure report",
+      "check": "Separate the observed symptom from the proposed cause; record expected versus actual behavior.",
+      "decisionImpact": "State what the existing evidence supports and what remains a hypothesis.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "reproduction",
+      "when": "Before proposing a fix",
+      "check": "Identify exact input, versions, environment and the smallest reproducer with the same failure.",
+      "decisionImpact": "Request only missing details that distinguish plausible causes.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "discriminating-test",
+      "when": "When several causes fit",
+      "check": "Choose the lowest-cost observation or test whose outcomes separate the causes.",
+      "decisionImpact": "Explain how each possible result changes the next step.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "failed-attempts",
+      "when": "When previous fixes failed",
+      "check": "Compare what changed with the original failure signature and identify what the attempt ruled out.",
+      "decisionImpact": "Avoid repeating the same fix unless a newly stated condition makes it informative.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "regression",
+      "when": "When a fix is proposed",
+      "check": "Specify a regression check through the normal entry point and the affected adjacent behavior.",
+      "decisionImpact": "Report a proposed fix as unverified until the relevant evidence exists.",
+      "sourceRefs": [
+        "primary"
+      ]
+    }
+  ],
+  "evidenceRequirements": [
+    "Error text and expected/actual behavior",
+    "Minimal input and relevant runtime/dependency versions",
+    "Attempts already made and their observed results"
+  ],
+  "qualityChecks": [
+    "Every claimed root cause has supporting evidence",
+    "Next test distinguishes hypotheses",
+    "Do not claim to have run commands"
+  ],
+  "riskRules": [
+    "Destructive diagnostics and production changes need explicit scope and separate authorization"
+  ],
+  "knowledgePolicy": {
+    "status": "not_connected",
+    "preferredSources": [
+      "First-party runtime and dependency documentation matching the failing version",
+      "Supplied logs, stack traces and reproducible observations"
+    ],
+    "refreshTriggers": [
+      "Version-specific runtime or dependency behavior"
+    ],
+    "onMissing": "Bound the conclusion and state which current source or evidence is needed."
+  },
+  "examples": [
+    {
+      "input": "A dependency reinstall and reboot did not fix intermittent request failures.",
+      "expected": "Use time-correlated evidence and a discriminating test.",
+      "reject": "Recommend another reinstall with no changed hypothesis."
+    }
+  ],
+  "sources": [
+    {
+      "ref": "primary",
+      "sourceId": "awesome-claude-code-subagents/categories/04-quality-security/debugger.md",
+      "repository": "VoltAgent/awesome-claude-code-subagents",
+      "commit": "ed74d115b7fb7026a22a4f816a8e3250f425e3b4",
+      "path": "categories/04-quality-security/debugger.md",
+      "sha256": "7e39938967cb1313f803a603e215ad0d8c778e0913328ccee220bb8470d617f3",
+      "license": "MIT",
+      "url": "https://github.com/VoltAgent/awesome-claude-code-subagents/blob/ed74d115b7fb7026a22a4f816a8e3250f425e3b4/categories/04-quality-security/debugger.md",
+      "sections": [
+        "Diagnostic approach:",
+        "1. Issue Analysis",
+        "Debugging Context"
+      ]
+    }
+  ],
+  "adaptations": [
+    "Converted task execution instructions into conditional consultation checks.",
+    "Removed persona, memory claims, model selection and tool grants.",
+    "Replaced unconditional numerical targets with context-specific evidence requirements."
+  ],
+  "review": {
+    "status": "engineering_curated",
+    "curatedAt": "2026-11-04",
+    "owner": "Zesia",
+    "professionalValidation": "pending_case_evaluation"
+  }
+}

@@ -1,0 +1,345 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "format": {
+      "type": "string",
+      "const": "zesia.expert-profile.v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,79}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "domain": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,79}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "routingDescription": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "useWhen": {
+      "minItems": 1,
+      "maxItems": 12,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      }
+    },
+    "distinguishFrom": {
+      "maxItems": 5,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "expertId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,79}$"
+          },
+          "criterion": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "expertId",
+          "criterion"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "diagnosticChecklist": {
+      "minItems": 1,
+      "maxItems": 8,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,79}$"
+          },
+          "when": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "check": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "decisionImpact": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "sourceRefs": {
+            "maxItems": 4,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          }
+        },
+        "required": [
+          "id",
+          "when",
+          "check",
+          "decisionImpact",
+          "sourceRefs"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "evidenceRequirements": {
+      "minItems": 1,
+      "maxItems": 12,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      }
+    },
+    "qualityChecks": {
+      "minItems": 1,
+      "maxItems": 12,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      }
+    },
+    "riskRules": {
+      "minItems": 1,
+      "maxItems": 12,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      }
+    },
+    "knowledgePolicy": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "const": "not_connected"
+        },
+        "preferredSources": {
+          "maxItems": 12,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        },
+        "refreshTriggers": {
+          "maxItems": 12,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        },
+        "onMissing": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "status",
+        "preferredSources",
+        "refreshTriggers",
+        "onMissing"
+      ],
+      "additionalProperties": false
+    },
+    "examples": {
+      "minItems": 1,
+      "maxItems": 5,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "expected": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "reject": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "input",
+          "expected",
+          "reject"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "sources": {
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,79}$"
+          },
+          "sourceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "repository": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "commit": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "license": {
+            "type": "string",
+            "const": "MIT"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sections": {
+            "minItems": 1,
+            "maxItems": 12,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          }
+        },
+        "required": [
+          "ref",
+          "sourceId",
+          "repository",
+          "commit",
+          "path",
+          "sha256",
+          "license",
+          "url",
+          "sections"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "adaptations": {
+      "minItems": 1,
+      "maxItems": 12,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      }
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "const": "engineering_curated"
+        },
+        "curatedAt": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "professionalValidation": {
+          "type": "string",
+          "const": "pending_case_evaluation"
+        }
+      },
+      "required": [
+        "status",
+        "curatedAt",
+        "owner",
+        "professionalValidation"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "format",
+    "id",
+    "version",
+    "domain",
+    "title",
+    "scope",
+    "routingDescription",
+    "useWhen",
+    "distinguishFrom",
+    "diagnosticChecklist",
+    "evidenceRequirements",
+    "qualityChecks",
+    "riskRules",
+    "knowledgePolicy",
+    "examples",
+    "sources",
+    "adaptations",
+    "review"
+  ],
+  "additionalProperties": false,
+  "$id": "https://github.com/Rowtion/zesia-expert-profiles/blob/main/schema/expert-profile.schema.json",
+  "title": "Zesia Expert Profile v1"
+}

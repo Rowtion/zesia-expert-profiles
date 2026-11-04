@@ -1,0 +1,125 @@
+{
+  "format": "zesia.expert-profile.v1",
+  "id": "security-review",
+  "version": "0.1.1",
+  "domain": "software",
+  "title": "安全设计审查",
+  "scope": "Threat models, trust boundaries, authorization, secret handling and evidence-based security review.",
+  "routingDescription": "Threat models, trust boundaries, authorization, secret handling and evidence-based security review.",
+  "useWhen": [
+    "Review an API permission boundary",
+    "Assess an exposed secret or claimed vulnerability"
+  ],
+  "distinguishFrom": [
+    {
+      "expertId": "backend-architecture",
+      "criterion": "Use architecture when state or data evolution is the dominant decision."
+    }
+  ],
+  "diagnosticChecklist": [
+    {
+      "id": "threat-scope",
+      "when": "Before a security judgment",
+      "check": "Identify assets, attacker capabilities, trust boundaries and allowed assessment scope.",
+      "decisionImpact": "Tie each concern to a concrete threat and reachable surface.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "authorization",
+      "when": "When identifiers or tenant labels are supplied",
+      "check": "Check server-side authentication, per-object authorization and scope propagation.",
+      "decisionImpact": "Do not treat classification labels or hidden UI controls as an ownership check.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "secret-flow",
+      "when": "When reviewing credentials",
+      "check": "Trace collection, storage, forwarding, logs and rotation without requesting secret values.",
+      "decisionImpact": "Prefer scoped credentials and name each place exposure could occur.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "finding-proof",
+      "when": "When a vulnerability is claimed",
+      "check": "Separate demonstrated behavior from a suspected issue and describe prerequisites and impact.",
+      "decisionImpact": "Assign severity from supported exploitability and consequence.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "remediation",
+      "when": "When suggesting a control",
+      "check": "Specify how the control is checked at the trust boundary and how regression would be detected.",
+      "decisionImpact": "Give a bounded correction and a verification plan rather than a compliance claim.",
+      "sourceRefs": [
+        "primary"
+      ]
+    }
+  ],
+  "evidenceRequirements": [
+    "Sanitized request/response or code path supporting a finding",
+    "Trust boundary and authorization design",
+    "Affected version and deployment exposure"
+  ],
+  "qualityChecks": [
+    "No compliance or security certification without evidence",
+    "Differentiate confirmed and suspected findings",
+    "Keep exploitability prerequisites explicit"
+  ],
+  "riskRules": [
+    "Active probing and incident actions require separately authorized scope; private credentials are never necessary context"
+  ],
+  "knowledgePolicy": {
+    "status": "not_connected",
+    "preferredSources": [
+      "Version-specific first-party security advisories",
+      "The actual system's authorization design and scoped threat model"
+    ],
+    "refreshTriggers": [
+      "Current advisories for a named affected software version"
+    ],
+    "onMissing": "Bound the conclusion and state which current source or evidence is needed."
+  },
+  "examples": [
+    {
+      "input": "A task API accepts a project label and lets any bearer download another task artifact.",
+      "expected": "Check per-object authorization independently of the project label.",
+      "reject": "Conclude the project label enforces tenant isolation."
+    }
+  ],
+  "sources": [
+    {
+      "ref": "primary",
+      "sourceId": "awesome-claude-code-subagents/categories/03-infrastructure/security-engineer.md",
+      "repository": "VoltAgent/awesome-claude-code-subagents",
+      "commit": "ed74d115b7fb7026a22a4f816a8e3250f425e3b4",
+      "path": "categories/03-infrastructure/security-engineer.md",
+      "sha256": "2fd3bc9413b944da3ab05ca70b669437357b0217c92e24fb93d235fd41d0f854",
+      "license": "MIT",
+      "url": "https://github.com/VoltAgent/awesome-claude-code-subagents/blob/ed74d115b7fb7026a22a4f816a8e3250f425e3b4/categories/03-infrastructure/security-engineer.md",
+      "sections": [
+        "Security Assessment",
+        "1. Security Analysis",
+        "3. Security Verification"
+      ]
+    }
+  ],
+  "adaptations": [
+    "Converted task execution instructions into conditional consultation checks.",
+    "Removed persona, memory claims, model selection and tool grants.",
+    "Replaced unconditional numerical targets with context-specific evidence requirements."
+  ],
+  "review": {
+    "status": "engineering_curated",
+    "curatedAt": "2026-11-04",
+    "owner": "Zesia",
+    "professionalValidation": "pending_case_evaluation"
+  }
+}

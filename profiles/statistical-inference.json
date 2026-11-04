@@ -1,0 +1,129 @@
+{
+  "format": "zesia.expert-profile.v1",
+  "id": "statistical-inference",
+  "version": "0.1.1",
+  "domain": "data",
+  "title": "统计推断",
+  "scope": "Estimands, sampling units, dependence, uncertainty, missingness and multiplicity in statistical conclusions.",
+  "routingDescription": "Estimands, sampling units, dependence, uncertainty, missingness and multiplicity in statistical conclusions.",
+  "useWhen": [
+    "Choose or interpret a statistical analysis",
+    "A significance claim may hide dependence or selective analysis"
+  ],
+  "distinguishFrom": [
+    {
+      "expertId": "causal-inference",
+      "criterion": "Use causal inference for claims about intervention effects."
+    },
+    {
+      "expertId": "experiment-design",
+      "criterion": "Use experiment design for randomization and stopping plans."
+    }
+  ],
+  "diagnosticChecklist": [
+    {
+      "id": "estimand",
+      "when": "Before choosing a test",
+      "check": "State the target quantity, population and decision in ordinary language.",
+      "decisionImpact": "Select assumptions and methods that answer that quantity.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "effective-n",
+      "when": "When observations share people, sites or time periods",
+      "check": "Identify the independent sampling unit and clustering or repeated measurements.",
+      "decisionImpact": "Use uncertainty aligned with effective replication rather than the raw row count.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "uncertainty",
+      "when": "When interpreting a numerical effect",
+      "check": "Consider effect size, uncertainty interval and decision relevance together.",
+      "decisionImpact": "Avoid a universal p-value cutoff or equating nonsignificance with no effect.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "selection",
+      "when": "When many analyses or outcomes were explored",
+      "check": "Identify the comparison family, outcome selection and exploratory versus confirmatory status.",
+      "decisionImpact": "State the applicable error-control or sensitivity requirement.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "missingness",
+      "when": "When records or outcomes are missing",
+      "check": "Examine the plausible missingness mechanism and what was dropped or imputed.",
+      "decisionImpact": "Explain sensitivity to missing data and avoid unqualified complete-case conclusions.",
+      "sourceRefs": [
+        "primary"
+      ]
+    }
+  ],
+  "evidenceRequirements": [
+    "Sampling design and independent unit",
+    "Target estimand, effect estimates and uncertainty",
+    "Missingness, analysis selection and relevant assumptions"
+  ],
+  "qualityChecks": [
+    "Report effect size and uncertainty in meaningful units",
+    "Keep exploratory and confirmatory statements distinct",
+    "Do not claim precision from pseudo-replicated rows"
+  ],
+  "riskRules": [
+    "High-stakes inferences need accountable domain review and evidence matching the decision"
+  ],
+  "knowledgePolicy": {
+    "status": "not_connected",
+    "preferredSources": [
+      "Original methodological references for the chosen estimator and design",
+      "ASA guidance and applicable field-specific statistical reporting standards"
+    ],
+    "refreshTriggers": [
+      "Method-specific reporting guidance when a named standard is required"
+    ],
+    "onMissing": "Bound the conclusion and state which current source or evidence is needed."
+  },
+  "examples": [
+    {
+      "input": "Three donors yield 40,000 cell rows and p<0.001 in a cell-level t-test.",
+      "expected": "Identify donor-level replication and uncertainty limits.",
+      "reject": "Treat 40,000 cells as 40,000 independent subjects."
+    }
+  ],
+  "sources": [
+    {
+      "ref": "primary",
+      "sourceId": "scientific-agents/scientific-agents/statistician/AGENTS.md",
+      "repository": "K-Dense-AI/scientific-agents",
+      "commit": "98c7fae46648724e1a43a1f2b207b0c82fcc462e",
+      "path": "scientific-agents/statistician/AGENTS.md",
+      "sha256": "3de183df9ce8df94f58c37188597e3c45ca77dd8f2aca104b1a6e4c5bc6e8927",
+      "license": "MIT",
+      "url": "https://github.com/K-Dense-AI/scientific-agents/blob/98c7fae46648724e1a43a1f2b207b0c82fcc462e/scientific-agents/statistician/AGENTS.md",
+      "sections": [
+        "Mindset And First Principles",
+        "How You Work",
+        "Rigor And Critical Thinking"
+      ]
+    }
+  ],
+  "adaptations": [
+    "Converted task execution instructions into conditional consultation checks.",
+    "Removed persona, memory claims, model selection and tool grants.",
+    "Replaced unconditional numerical targets with context-specific evidence requirements."
+  ],
+  "review": {
+    "status": "engineering_curated",
+    "curatedAt": "2026-11-04",
+    "owner": "Zesia",
+    "professionalValidation": "pending_case_evaluation"
+  }
+}

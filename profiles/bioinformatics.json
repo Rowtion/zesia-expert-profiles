@@ -1,0 +1,127 @@
+{
+  "format": "zesia.expert-profile.v1",
+  "id": "bioinformatics",
+  "version": "0.1.2",
+  "domain": "science",
+  "title": "生物信息分析设计",
+  "scope": "Omics analysis planning, biological replication, reference compatibility, batch confounding and reproducibility.",
+  "routingDescription": "Omics analysis planning, biological replication, reference compatibility, batch confounding and reproducibility.",
+  "useWhen": [
+    "Review RNA-seq or other omics analysis plans",
+    "Interpret findings affected by sample or reference design"
+  ],
+  "distinguishFrom": [
+    {
+      "expertId": "statistical-inference",
+      "criterion": "Use statistical inference for non-domain-specific estimands and uncertainty."
+    }
+  ],
+  "diagnosticChecklist": [
+    {
+      "id": "assay",
+      "when": "Before suggesting a pipeline",
+      "check": "Identify the measurement layer, organism, scientific contrast and biological sample unit.",
+      "decisionImpact": "Choose assay-appropriate methods rather than a generic omics recipe.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "replication",
+      "when": "When samples include technical or cell-level repeats",
+      "check": "Separate biological and technical replication and identify condition-batch confounding.",
+      "decisionImpact": "Avoid claiming independent biological evidence from technical repeats or cells.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "references",
+      "when": "When datasets or annotations are combined",
+      "check": "Check genome assembly, annotation release, coordinate convention and identifier mapping. A missing reference version is unknown, not proof of a mismatch.",
+      "decisionImpact": "Resolve reference mismatches before interpreting missing genes or peaks.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "normalization",
+      "when": "When transformed or batch-corrected data are analyzed",
+      "check": "Check the input expected by the statistical method and design-matrix identifiability.",
+      "decisionImpact": "Do not recommend correcting away a fully confounded effect or using incompatible inputs.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "interpretation",
+      "when": "When differential or enrichment findings are claimed",
+      "check": "Require effect sizes, multiplicity handling, appropriate background and reproducible provenance.",
+      "decisionImpact": "Describe research evidence limits and separate association from mechanism.",
+      "sourceRefs": [
+        "primary"
+      ]
+    }
+  ],
+  "evidenceRequirements": [
+    "Assay and sample metadata with condition and batch",
+    "Biological replication and reference/annotation versions",
+    "Transformation steps and the planned statistical contrast"
+  ],
+  "qualityChecks": [
+    "No disease diagnosis from exploratory omics findings",
+    "Reference and biological replicate assumptions are explicit",
+    "Pathway interpretation reflects background and multiplicity",
+    "Keep unrecorded metadata distinct from a demonstrated incompatibility"
+  ],
+  "riskRules": [
+    "Research consultation does not establish clinical validity; identifiable participant data require authorized handling"
+  ],
+  "knowledgePolicy": {
+    "status": "not_connected",
+    "preferredSources": [
+      "Reference assembly and annotation release documentation",
+      "Assay-specific analysis-method documentation and supplied sample provenance"
+    ],
+    "refreshTriggers": [
+      "Current reference releases and version-specific method guidance"
+    ],
+    "onMissing": "Bound the conclusion and state which current source or evidence is needed."
+  },
+  "examples": [
+    {
+      "input": "All cases were processed in batch A and all controls in batch B.",
+      "expected": "Recognize complete confounding and explain what the design cannot identify.",
+      "reject": "Claim batch correction can recover the disease effect without additional evidence."
+    }
+  ],
+  "sources": [
+    {
+      "ref": "primary",
+      "sourceId": "scientific-agents/scientific-agents/bioinformatician/AGENTS.md",
+      "repository": "K-Dense-AI/scientific-agents",
+      "commit": "98c7fae46648724e1a43a1f2b207b0c82fcc462e",
+      "path": "scientific-agents/bioinformatician/AGENTS.md",
+      "sha256": "2b0336b899777b6faac9136aae5d1ff3f60c33c7395e020af52b898d4a37cb68",
+      "license": "MIT",
+      "url": "https://github.com/K-Dense-AI/scientific-agents/blob/98c7fae46648724e1a43a1f2b207b0c82fcc462e/scientific-agents/bioinformatician/AGENTS.md",
+      "sections": [
+        "Mindset And First Principles",
+        "How You Frame A Problem",
+        "Rigor And Critical Thinking"
+      ]
+    }
+  ],
+  "adaptations": [
+    "Converted task execution instructions into conditional consultation checks.",
+    "Removed persona, memory claims, model selection and tool grants.",
+    "Replaced unconditional numerical targets with context-specific evidence requirements.",
+    "Tightened evidence and recommendation boundaries after the first synthetic live case review; broad professional validation remains pending."
+  ],
+  "review": {
+    "status": "engineering_curated",
+    "curatedAt": "2026-11-04",
+    "owner": "Zesia",
+    "professionalValidation": "pending_case_evaluation"
+  }
+}

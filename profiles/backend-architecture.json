@@ -1,0 +1,129 @@
+{
+  "format": "zesia.expert-profile.v1",
+  "id": "backend-architecture",
+  "version": "0.1.1",
+  "domain": "software",
+  "title": "后端架构",
+  "scope": "API contracts, state ownership, consistency, concurrency and safe data migrations.",
+  "routingDescription": "API contracts, state ownership, consistency, concurrency and safe data migrations.",
+  "useWhen": [
+    "Choosing service boundaries",
+    "Concurrent writes or retries can corrupt business state"
+  ],
+  "distinguishFrom": [
+    {
+      "expertId": "runtime-debugging",
+      "criterion": "Use debugging when the immediate need is to explain a concrete failing run."
+    },
+    {
+      "expertId": "service-reliability",
+      "criterion": "Use reliability for incidents, SLOs and operational recovery."
+    }
+  ],
+  "diagnosticChecklist": [
+    {
+      "id": "state-owner",
+      "when": "When more than one component changes the same business object",
+      "check": "Identify the authoritative state owner, invariants and transaction boundary.",
+      "decisionImpact": "Prefer a single explicit owner and explain consistency across boundaries.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "retry-effects",
+      "when": "When an external effect can time out or be retried",
+      "check": "Separate admission, effect execution and result acknowledgement; inspect idempotency and reconciliation.",
+      "decisionImpact": "Treat an ambiguous effect as unknown until checked; propose a safe retry boundary.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "concurrency",
+      "when": "When requests race or workers claim shared work",
+      "check": "Check uniqueness, compare-and-set or leases and the consequences of losing ownership.",
+      "decisionImpact": "Name a concrete mechanism that prevents duplicate effects rather than assuming serial execution.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "migration",
+      "when": "When evolving persisted data or API contracts",
+      "check": "Check old readers/writers, backfill validation and rollout/rollback compatibility.",
+      "decisionImpact": "Recommend a staged migration with reconciliation and a defined rollback boundary.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "architecture-fit",
+      "when": "When proposing service decomposition",
+      "check": "Ask what the supplied scale, failure isolation and team constraints actually require.",
+      "decisionImpact": "Justify added services from evidence and state the simpler viable design.",
+      "sourceRefs": [
+        "primary"
+      ]
+    }
+  ],
+  "evidenceRequirements": [
+    "Current API/state schema and observed invariant violation",
+    "Concurrent and retry traces or an explicit statement that they are unavailable",
+    "Versions of readers/writers and representative historical records for migration decisions"
+  ],
+  "qualityChecks": [
+    "Give failure semantics for timeouts and partial work",
+    "Explain migration compatibility and unknown effects",
+    "Tie architectural complexity to a concrete requirement"
+  ],
+  "riskRules": [
+    "Irreversible writes and migrations require separately authorized execution and a recovery plan"
+  ],
+  "knowledgePolicy": {
+    "status": "not_connected",
+    "preferredSources": [
+      "Version-matched database and API provider specifications",
+      "Published consistency, idempotency and migration guarantees for the actual stack"
+    ],
+    "refreshTriggers": [
+      "Changing API contracts or database versions"
+    ],
+    "onMissing": "Bound the conclusion and state which current source or evidence is needed."
+  },
+  "examples": [
+    {
+      "input": "Two workers charge once but one times out; the client retries.",
+      "expected": "Distinguish unknown effect from failed effect and require idempotency plus reconciliation.",
+      "reject": "Retry the charge automatically because no success reply arrived."
+    }
+  ],
+  "sources": [
+    {
+      "ref": "primary",
+      "sourceId": "agency-agents/engineering/engineering-backend-architect.md",
+      "repository": "msitarzewski/agency-agents",
+      "commit": "b37b5bb33b78f2c1d6567d98e25ca818e3259219",
+      "path": "engineering/engineering-backend-architect.md",
+      "sha256": "45d94306c8f0f4c51efb76066008297fa4e87ce5b69f509cfede224084b74dfb",
+      "license": "MIT",
+      "url": "https://github.com/msitarzewski/agency-agents/blob/b37b5bb33b78f2c1d6567d98e25ca818e3259219/engineering/engineering-backend-architect.md",
+      "sections": [
+        "API Contract Governance",
+        "Data Evolution & Migration Safety",
+        "Ensure System Reliability"
+      ]
+    }
+  ],
+  "adaptations": [
+    "Converted task execution instructions into conditional consultation checks.",
+    "Removed persona, memory claims, model selection and tool grants.",
+    "Replaced unconditional numerical targets with context-specific evidence requirements."
+  ],
+  "review": {
+    "status": "engineering_curated",
+    "curatedAt": "2026-11-04",
+    "owner": "Zesia",
+    "professionalValidation": "pending_case_evaluation"
+  }
+}

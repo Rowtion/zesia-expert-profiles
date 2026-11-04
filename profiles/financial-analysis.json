@@ -1,0 +1,125 @@
+{
+  "format": "zesia.expert-profile.v1",
+  "id": "financial-analysis",
+  "version": "0.1.1",
+  "domain": "business",
+  "title": "经营财务分析",
+  "scope": "Business financial statements, budget variance, cash-flow scenarios and assumption-sensitive valuation reviews.",
+  "routingDescription": "Business financial statements, budget variance, cash-flow scenarios and assumption-sensitive valuation reviews.",
+  "useWhen": [
+    "Explain a budget variance or cash-runway discrepancy",
+    "Review a business forecast or valuation assumptions"
+  ],
+  "distinguishFrom": [
+    {
+      "expertId": "causal-inference",
+      "criterion": "Use causal inference when attributing financial change to a specific intervention."
+    }
+  ],
+  "diagnosticChecklist": [
+    {
+      "id": "basis",
+      "when": "Before comparing financial metrics",
+      "check": "Confirm currency, period, entity scope, units and cash versus accrual basis.",
+      "decisionImpact": "Reconcile definitions before attributing a variance.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "integrity",
+      "when": "When using statements or ratios",
+      "check": "Check completeness and reconcile income, balance-sheet and cash-flow relationships using available evidence.",
+      "decisionImpact": "Do not infer liquidity from accounting profit alone.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "drivers",
+      "when": "When explaining budget versus actual",
+      "check": "Separate price, volume, mix, timing and one-off effects where data supports the distinction.",
+      "decisionImpact": "Label unsupported causal explanations as hypotheses.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "scenarios",
+      "when": "When reviewing forecasts or DCF",
+      "check": "Expose revenue/cost assumptions, discount and terminal assumptions, and their sensitivity.",
+      "decisionImpact": "Present a range and decision-sensitive assumptions rather than a precise unsupported valuation.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "materiality",
+      "when": "When prioritizing follow-up",
+      "check": "Choose materiality and comparison benchmarks appropriate to the business and decision.",
+      "decisionImpact": "Avoid applying generic ratio targets or current market inputs without a verified source.",
+      "sourceRefs": [
+        "primary"
+      ]
+    }
+  ],
+  "evidenceRequirements": [
+    "Financial basis, period, currency and scope",
+    "Available statements or driver-level actual/budget data",
+    "Forecast assumptions, sensitivity and source dates"
+  ],
+  "qualityChecks": [
+    "Separate profit, cash and enterprise/equity values",
+    "State assumptions and sensitivity",
+    "No personalized investment recommendation or compliance certification"
+  ],
+  "riskRules": [
+    "Material financial commitments and regulated advice need accountable professional review"
+  ],
+  "knowledgePolicy": {
+    "status": "not_connected",
+    "preferredSources": [
+      "Entity financial statements and accounting-policy notes for the stated period",
+      "Official applicable accounting standards and dated verified market inputs"
+    ],
+    "refreshTriggers": [
+      "Current market inputs, accounting rules and jurisdiction-specific requirements"
+    ],
+    "onMissing": "Bound the conclusion and state which current source or evidence is needed."
+  },
+  "examples": [
+    {
+      "input": "A profitable company has a shorter runway after receivables doubled.",
+      "expected": "Reconcile cash collection, working capital and the forecast basis.",
+      "reject": "Infer that reported profit guarantees adequate cash runway."
+    }
+  ],
+  "sources": [
+    {
+      "ref": "primary",
+      "sourceId": "claude-skills/finance/skills/financial-analyst/SKILL.md",
+      "repository": "alirezarezvani/claude-skills",
+      "commit": "c85b17e1fb621ba760478baaacc4fcb9be225e74",
+      "path": "finance/skills/financial-analyst/SKILL.md",
+      "sha256": "cf71815e44247f834605fa745d21b79a468f40449ba6c4602285f347d0d36f04",
+      "license": "MIT",
+      "url": "https://github.com/alirezarezvani/claude-skills/blob/c85b17e1fb621ba760478baaacc4fcb9be225e74/finance/skills/financial-analyst/SKILL.md",
+      "sections": [
+        "5-Phase Workflow",
+        "Knowledge Bases",
+        "Key Metrics & Targets"
+      ]
+    }
+  ],
+  "adaptations": [
+    "Converted task execution instructions into conditional consultation checks.",
+    "Removed persona, memory claims, model selection and tool grants.",
+    "Replaced unconditional numerical targets with context-specific evidence requirements."
+  ],
+  "review": {
+    "status": "engineering_curated",
+    "curatedAt": "2026-11-04",
+    "owner": "Zesia",
+    "professionalValidation": "pending_case_evaluation"
+  }
+}

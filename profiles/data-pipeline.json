@@ -1,0 +1,125 @@
+{
+  "format": "zesia.expert-profile.v1",
+  "id": "data-pipeline",
+  "version": "0.1.1",
+  "domain": "data",
+  "title": "数据管道与质量",
+  "scope": "Data contracts, row grain, schema evolution, incremental ingestion, replay and reconciliation.",
+  "routingDescription": "Data contracts, row grain, schema evolution, incremental ingestion, replay and reconciliation.",
+  "useWhen": [
+    "Missing or duplicated records after ingestion",
+    "Metrics changed after schema or pipeline changes"
+  ],
+  "distinguishFrom": [
+    {
+      "expertId": "statistical-inference",
+      "criterion": "Use statistical inference once the underlying data and sampling unit are trustworthy."
+    }
+  ],
+  "diagnosticChecklist": [
+    {
+      "id": "grain-contract",
+      "when": "Before accepting a dataset",
+      "check": "Define what one row means, keys, units, time zone, freshness and source-to-target contract.",
+      "decisionImpact": "Resolve contradictory grains before joins or aggregation.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "replay",
+      "when": "When ingestion retries or backfills",
+      "check": "Check deduplication keys, watermarks, late data and idempotent output semantics.",
+      "decisionImpact": "Specify whether replay replaces, merges or duplicates data.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "reconciliation",
+      "when": "When totals disagree",
+      "check": "Compare source and target counts, key coverage and aggregates at matching grain and time windows.",
+      "decisionImpact": "Locate the first stage where evidence diverges.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "schema-change",
+      "when": "When source schemas evolve",
+      "check": "Check old records, type coercion, null handling, defaults and quarantined bad rows.",
+      "decisionImpact": "Preserve rejected rows and make compatibility failures visible.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "scale-fit",
+      "when": "When a new data platform is proposed",
+      "check": "Compare measured size, latency and operational constraints with the current pipeline.",
+      "decisionImpact": "Choose the smallest reliable change and justify infrastructure additions.",
+      "sourceRefs": [
+        "primary"
+      ]
+    }
+  ],
+  "evidenceRequirements": [
+    "Data dictionary with key, grain, unit and time zone",
+    "Source and target counts plus rejected-row records",
+    "Watermark/replay policy and representative old/new schemas"
+  ],
+  "qualityChecks": [
+    "Counts and aggregates reconcile at the same grain",
+    "Failures preserve evidence rather than silently dropping rows",
+    "Architecture follows actual throughput and freshness needs"
+  ],
+  "riskRules": [
+    "Backfills and retention changes may be irreversible and require a separately reviewed execution plan"
+  ],
+  "knowledgePolicy": {
+    "status": "not_connected",
+    "preferredSources": [
+      "Versioned source/target schemas and connector guarantees",
+      "Source-owned data dictionaries, watermark semantics and reconciliation records"
+    ],
+    "refreshTriggers": [
+      "Source API and schema-version changes"
+    ],
+    "onMissing": "Bound the conclusion and state which current source or evidence is needed."
+  },
+  "examples": [
+    {
+      "input": "A CDC backfill doubled revenue although no orders changed.",
+      "expected": "Check row grain, replay deduplication and source-to-target reconciliation.",
+      "reject": "Interpret the doubled revenue as business growth."
+    }
+  ],
+  "sources": [
+    {
+      "ref": "primary",
+      "sourceId": "agency-agents/engineering/engineering-data-engineer.md",
+      "repository": "msitarzewski/agency-agents",
+      "commit": "b37b5bb33b78f2c1d6567d98e25ca818e3259219",
+      "path": "engineering/engineering-data-engineer.md",
+      "sha256": "3f6f629f0e4e00a0010bcd98675cb5183cca89b29b6d3fe2f6db2db474c2d800",
+      "license": "MIT",
+      "url": "https://github.com/msitarzewski/agency-agents/blob/b37b5bb33b78f2c1d6567d98e25ca818e3259219/engineering/engineering-data-engineer.md",
+      "sections": [
+        "Pipeline Reliability Standards",
+        "Step 1: Source Discovery & Contract Definition",
+        "Step 5: Observability & Ops"
+      ]
+    }
+  ],
+  "adaptations": [
+    "Converted task execution instructions into conditional consultation checks.",
+    "Removed persona, memory claims, model selection and tool grants.",
+    "Replaced unconditional numerical targets with context-specific evidence requirements."
+  ],
+  "review": {
+    "status": "engineering_curated",
+    "curatedAt": "2026-11-04",
+    "owner": "Zesia",
+    "professionalValidation": "pending_case_evaluation"
+  }
+}

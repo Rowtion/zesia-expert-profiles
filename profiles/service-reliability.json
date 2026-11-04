@@ -1,0 +1,127 @@
+{
+  "format": "zesia.expert-profile.v1",
+  "id": "service-reliability",
+  "version": "0.1.2",
+  "domain": "software",
+  "title": "服务可靠性",
+  "scope": "Service incidents, SLI/SLO design, error budgets, recovery, backpressure and bounded retries.",
+  "routingDescription": "Service incidents, SLI/SLO design, error budgets, recovery, backpressure and bounded retries.",
+  "useWhen": [
+    "Availability or latency incidents",
+    "Retry storms, overload or unsafe recovery"
+  ],
+  "distinguishFrom": [
+    {
+      "expertId": "runtime-debugging",
+      "criterion": "Use debugging for a localized failure with no service-level operational decision."
+    }
+  ],
+  "diagnosticChecklist": [
+    {
+      "id": "user-impact",
+      "when": "When defining reliability",
+      "check": "Identify the user-visible operation, measurement window, SLI denominator and acceptable failure budget.",
+      "decisionImpact": "Derive SLOs from requirements instead of copying universal uptime or MTTR targets.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "incident",
+      "when": "During an incident",
+      "check": "Separate immediate containment from cause investigation, preserving the timeline and evidence.",
+      "decisionImpact": "Prioritize reversible containment with explicit blast radius and rollback.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "retry-load",
+      "when": "When failures amplify traffic",
+      "check": "Check deadlines, retry budgets, backoff/jitter, circuit breaking and load shedding together.",
+      "decisionImpact": "Bound amplification and stop replay of effects whose outcomes are unknown.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "recovery",
+      "when": "When restarting or replaying work",
+      "check": "Check durable ownership, reconciliation and the last confirmed business effect.",
+      "decisionImpact": "Recover from evidence rather than assuming a restart resets the operation. Distinguish retries of one business payment from genuinely new payments; do not globally freeze new idempotency keys.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "verification",
+      "when": "When recommending recovery",
+      "check": "Define user-visible recovery checks, backlog behavior and an observation window.",
+      "decisionImpact": "Require a measurable recovery criterion before declaring the incident resolved.",
+      "sourceRefs": [
+        "primary"
+      ]
+    }
+  ],
+  "evidenceRequirements": [
+    "User-visible error and latency rates over a stated window",
+    "Incident timeline and rollout/dependency changes",
+    "Retry volume, queue depth and confirmed/unknown effect counts"
+  ],
+  "qualityChecks": [
+    "Avoid ungrounded numerical SLO targets",
+    "Separate mitigation from root-cause certainty",
+    "Preserve unknown outcomes and recovery evidence",
+    "Qualify containment impact; do not guarantee zero data loss or unaffected new traffic without evidence"
+  ],
+  "riskRules": [
+    "Production recovery actions require authority, blast-radius checks and a rollback path"
+  ],
+  "knowledgePolicy": {
+    "status": "not_connected",
+    "preferredSources": [
+      "The actual provider's timeout, idempotency, reconciliation and rate-limit guarantees",
+      "Service-owned SLI/SLO definitions, incident timelines and runbooks"
+    ],
+    "refreshTriggers": [
+      "Current provider rate limits and service-specific operational guidance"
+    ],
+    "onMissing": "Bound the conclusion and state which current source or evidence is needed."
+  },
+  "examples": [
+    {
+      "input": "Payment retries triple traffic after upstream timeouts; restarting workers replays charges.",
+      "expected": "Contain amplification and reconcile effects before replay.",
+      "reject": "Restart all workers and retry every timeout."
+    }
+  ],
+  "sources": [
+    {
+      "ref": "primary",
+      "sourceId": "awesome-claude-code-subagents/categories/03-infrastructure/sre-engineer.md",
+      "repository": "VoltAgent/awesome-claude-code-subagents",
+      "commit": "ed74d115b7fb7026a22a4f816a8e3250f425e3b4",
+      "path": "categories/03-infrastructure/sre-engineer.md",
+      "sha256": "8ab8567c2b07920e43175fea10e99436cb32a58fffd0812b821014a6a3235213",
+      "license": "MIT",
+      "url": "https://github.com/VoltAgent/awesome-claude-code-subagents/blob/ed74d115b7fb7026a22a4f816a8e3250f425e3b4/categories/03-infrastructure/sre-engineer.md",
+      "sections": [
+        "SLI/SLO management:",
+        "Reliability architecture:",
+        "1. Reliability Analysis"
+      ]
+    }
+  ],
+  "adaptations": [
+    "Converted task execution instructions into conditional consultation checks.",
+    "Removed persona, memory claims, model selection and tool grants.",
+    "Replaced unconditional numerical targets with context-specific evidence requirements.",
+    "Tightened evidence and recommendation boundaries after the first synthetic live case review; broad professional validation remains pending."
+  ],
+  "review": {
+    "status": "engineering_curated",
+    "curatedAt": "2026-11-04",
+    "owner": "Zesia",
+    "professionalValidation": "pending_case_evaluation"
+  }
+}
