@@ -1,6 +1,8 @@
-# Zesia Expert Profiles
+English | [简体中文](README.zh-CN.md)
 
-Source-traceable consultation methods for agents, maintained by 则灵 (Zesia).
+# ZESIA Expert Profiles
+
+Source-traceable consultation methods for agents, maintained by ZESIA.
 
 Each profile defines when its expertise applies, the evidence to inspect, and how those checks should change a recommendation. The initial collection contains **12 specialist profiles and one general fallback** across software, data, science, product and business.
 
@@ -70,4 +72,4 @@ Follow [CONTRIBUTING.md](CONTRIBUTING.md). A proposed profile should demonstrate
 
 ## License
 
-MIT for Zesia-authored material. Adapted material also carries the original MIT notices described in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Retain the applicable notices when redistributing.
+MIT for ZESIA-authored material. Adapted material also carries the original MIT notices described in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Retain the applicable notices when redistributing.
