@@ -118,6 +118,28 @@
       ]
     },
     {
+      "id": "frontend-ui-ux",
+      "version": "0.1.0",
+      "domain": "product",
+      "title": "前端 UI/UX 评审",
+      "path": "profiles/frontend-ui-ux.json",
+      "routingDescription": "Review a web screen, form or component for usability, visual hierarchy, responsive layout, keyboard or accessibility issues.",
+      "useWhen": [
+        "A screenshot, prototype or live web flow needs interface review",
+        "An implemented control needs a keyboard, contrast or responsive check"
+      ],
+      "distinguishFrom": [
+        {
+          "expertId": "product-requirements",
+          "criterion": "Use product requirements to define scope or acceptance before a concrete interface exists."
+        },
+        {
+          "expertId": "user-research",
+          "criterion": "Use user research to design studies or interpret participant evidence."
+        }
+      ]
+    },
+    {
       "id": "general",
       "version": "0.1.0",
       "domain": "general",

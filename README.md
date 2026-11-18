@@ -4,7 +4,7 @@ English | [简体中文](README.zh-CN.md)
 
 Source-traceable consultation methods for agents, maintained by ZESIA.
 
-Each profile defines when its expertise applies, the evidence to inspect, and how those checks should change a recommendation. The initial collection contains **12 specialist profiles and one general fallback** across software, data, science, product and business.
+Each profile defines when its expertise applies, the evidence to inspect, and how those checks should change a recommendation. The collection contains **13 specialist profiles and one general fallback** across software, data, science, product and business.
 
 ## Browse the profiles
 
@@ -20,6 +20,7 @@ Each profile defines when its expertise applies, the evidence to inspect, and ho
 | [Experiment design](profiles/experiment-design.json) | Randomization, primary outcomes, guardrails, power and stopping rules |
 | [Bioinformatics](profiles/bioinformatics.json) | Assay design, biological replication, reference compatibility and batch effects |
 | [Product requirements](profiles/product-requirements.json) | Incomplete requirements, bounded deliverables and observable acceptance |
+| [Frontend UI/UX review](profiles/frontend-ui-ux.json) | Task flow, visual hierarchy, responsive layout, keyboard interaction and accessibility |
 | [User research](profiles/user-research.json) | Method choice, participant independence, synthesis and generalization |
 | [Financial analysis](profiles/financial-analysis.json) | Financial basis, working capital, variance and sensitivity |
 | [General consultation](profiles/general.json) | Decisions with insufficient specialist context |

@@ -1,0 +1,117 @@
+{
+  "format": "zesia.expert-profile.v1",
+  "id": "frontend-ui-ux",
+  "version": "0.1.0",
+  "domain": "product",
+  "title": "前端 UI/UX 评审",
+  "scope": "Evidence-based review of rendered web interfaces: task flow, visual hierarchy, responsive layout, keyboard behavior and accessibility.",
+  "routingDescription": "Review a web screen, form or component for usability, visual hierarchy, responsive layout, keyboard or accessibility issues.",
+  "useWhen": [
+    "A screenshot, prototype or live web flow needs interface review",
+    "An implemented control needs a keyboard, contrast or responsive check"
+  ],
+  "distinguishFrom": [
+    {
+      "expertId": "product-requirements",
+      "criterion": "Use product requirements to define scope or acceptance before a concrete interface exists."
+    },
+    {
+      "expertId": "user-research",
+      "criterion": "Use user research to design studies or interpret participant evidence."
+    }
+  ],
+  "diagnosticChecklist": [
+    {
+      "id": "task-flow",
+      "when": "When reviewing a primary flow",
+      "check": "Trace the user goal through the primary action, feedback, and recovery after failure.",
+      "decisionImpact": "Prioritize task blockers over visual preferences.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "keyboard",
+      "when": "When interactive controls or overlays are involved",
+      "check": "Verify keyboard operation and visible focus. For a modal, check initial focus, focus containment, Escape and focus return.",
+      "decisionImpact": "Report observed failures by state and give a keyboard retest.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "visual-access",
+      "when": "When reviewing text, controls or a narrow viewport",
+      "check": "Measure contrast, check target size and test reflow against applicable WCAG 2.2 criteria and exceptions.",
+      "decisionImpact": "Separate measured failures from checks still requiring a live page.",
+      "sourceRefs": [
+        "primary"
+      ]
+    },
+    {
+      "id": "hierarchy",
+      "when": "When reviewing screenshots or a rendered page",
+      "check": "Identify the primary action and whether headings, labels and states guide the intended task.",
+      "decisionImpact": "Recommend a concrete change tied to the task and supplied design system.",
+      "sourceRefs": [
+        "primary"
+      ]
+    }
+  ],
+  "evidenceRequirements": [
+    "User goal, page or component, and affected state",
+    "Use a rendered page or recorded checks for claims about focus, dimensions, contrast or reflow"
+  ],
+  "qualityChecks": [
+    "Give each finding a location, user impact, proposed change and reproducible acceptance check",
+    "Separate observed behavior, inference and untested states"
+  ],
+  "riskRules": [
+    "A screenshot or automated scan alone cannot establish accessibility conformance"
+  ],
+  "knowledgePolicy": {
+    "status": "not_connected",
+    "preferredSources": [
+      "WCAG 2.2 https://www.w3.org/TR/WCAG22/",
+      "WAI-ARIA APG patterns https://www.w3.org/WAI/ARIA/apg/patterns/"
+    ],
+    "refreshTriggers": [
+      "A current standard or component behavior is in dispute"
+    ],
+    "onMissing": "State what must be verified on the live interface."
+  },
+  "examples": [
+    {
+      "input": "A screenshot of a send-confirmation dialog shows faint text. Is the dialog accessible?",
+      "expected": "Flag possible contrast issues. Request rendered colors and a keyboard trace before claiming contrast or focus failures.",
+      "reject": "Declare WCAG conformance or say focus management was tested from a screenshot."
+    }
+  ],
+  "sources": [
+    {
+      "ref": "primary",
+      "sourceId": "claude-skills/research-ops/skills/product-research/SKILL.md",
+      "repository": "alirezarezvani/claude-skills",
+      "commit": "c85b17e1fb621ba760478baaacc4fcb9be225e74",
+      "path": "research-ops/skills/product-research/SKILL.md",
+      "sha256": "676beb9d51429668a16626ed9ab5ad2053403b4cbd89f7cab9a0ea9f99409957",
+      "license": "MIT",
+      "url": "https://github.com/alirezarezvani/claude-skills/blob/c85b17e1fb621ba760478baaacc4fcb9be225e74/research-ops/skills/product-research/SKILL.md",
+      "sections": [
+        "Purpose",
+        "Workflow",
+        "Assumptions",
+        "Anti-patterns"
+      ]
+    }
+  ],
+  "adaptations": [
+    "Use the pinned usability source for task-based evidence discipline. WCAG 2.2 and WAI-ARIA APG are separate references for the authored accessibility checks."
+  ],
+  "review": {
+    "status": "engineering_curated",
+    "curatedAt": "2026-11-10",
+    "owner": "Zesia",
+    "professionalValidation": "pending_case_evaluation"
+  }
+}

@@ -2,7 +2,7 @@
 
 # 则灵（zesia）· 专家 Profile
 
-面向 Agent 的可追溯咨询方法。每份 Profile 定义专业能力的适用范围、应检查的证据，以及这些检查如何改变建议。当前包含软件、数据、科学、产品和商业方向的 **12 个细分专家及 1 个通用回退专家**。
+面向 Agent 的可追溯咨询方法。每份 Profile 定义专业能力的适用范围、应检查的证据，以及这些检查如何改变建议。当前包含软件、数据、科学、产品和商业方向的 **13 个细分专家及 1 个通用回退专家**。
 
 ## 浏览专家
 
@@ -18,6 +18,7 @@
 | [实验设计](profiles/experiment-design.json) | 随机化、主要结局、护栏、功效与停止规则 |
 | [生物信息学](profiles/bioinformatics.json) | 实验设计、生物学重复、参考兼容性与批次效应 |
 | [产品需求](profiles/product-requirements.json) | 不完整需求、有边界的交付物与可观察验收 |
+| [前端 UI/UX 评审](profiles/frontend-ui-ux.json) | 任务流程、视觉层级、响应式布局、键盘交互与无障碍 |
 | [用户研究](profiles/user-research.json) | 方法选择、参与者独立性、综合归纳与泛化 |
 | [财务分析](profiles/financial-analysis.json) | 财务口径、营运资金、差异与敏感性分析 |
 | [通用咨询](profiles/general.json) | 缺乏足够专家上下文时的决策支持 |
